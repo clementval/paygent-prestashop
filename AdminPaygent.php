@@ -17,7 +17,7 @@ class AdminPaygent extends AdminTab {
     echo "<form>";
     echo "Merchant ID: <input type='text' name='merchant_id' value=''/></br>";
     echo "Hash key: <input type='text' name='hash_key' value=''/></br>";
-    echo "<input type='submit' value='Save'/>"
+    echo "<input type='submit' value='Save'/>";
     echo "</form>";
   }
 }
