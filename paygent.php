@@ -20,7 +20,11 @@ class Paygent extends Module {
     if (parent::install() == false){
       return false;
     }
-    // Do the construction work like db table creation
+
+    if(self::installModuleTab('AdminPaygent', array('default' => 'Pay Systems'), 'AdminModules') == false){
+      return false;
+    }
+
     return true;
   }
 
