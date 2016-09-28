@@ -11,10 +11,14 @@ class AdminPaygent extends AdminTab {
     parent::__construct();
   }
 
-  public function displayForm($isMainTab = true)
+  public function display()
   {
-    global $currentIndex, $cookie;
-    echo '<h2>Paygent payement configuration</h2>';
+    echo "<h2>Paygent payement configuration</h2>";
+    echo "<form>";
+    echo "Merchant ID: <input type='text' name='merchant_id' value=''/></br>";
+    echo "Hash key: <input type='text' name='hash_key' value=''/></br>";
+    echo "<input type='submit' value='Save'/>"
+    echo "</form>";
   }
 }
 ?>
