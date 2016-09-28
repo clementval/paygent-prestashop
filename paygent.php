@@ -5,7 +5,7 @@ if (!defined('_PS_VERSION_'))
 class Paygent extends Module {
   public function __construct() {
     $this->name = 'paygent';
-    $this->tab = 'Payment';
+    $this->tab = 'payments_gateways';
     $this->version = 1.0;
     $this->author = 'Valentin Clement';
     $this->need_instance = 0;
