@@ -28,13 +28,12 @@ class Paygent extends Module {
     return true;
   }
 
-
   public function uninstall() {
-  if (!parent::uninstall()){
-    // Do the cleaning work
-    //Db::getInstance()->Execute('DELETE FROM `'._DB_PREFIX_.'paygent`');
-  }
-  parent::uninstall();
+    if (!parent::uninstall()){
+      // Do the cleaning work
+      //Db::getInstance()->Execute('DELETE FROM `'._DB_PREFIX_.'paygent`');
+    }
+    parent::uninstall();
   }
 }
 ?>
