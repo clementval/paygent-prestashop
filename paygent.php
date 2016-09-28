@@ -19,15 +19,31 @@ class Paygent extends Module
     $this->description = $this->l('Accepts payments by credit cards with Paygent.');
   }
 
+  /******************************************
+   * MODULE INSTALLATION AND UNINSTALL PART *
+   ******************************************/
+
   public function install()
   {
     if (!parent::install()){
       return false;
     }
 
-    $this->createAdminTab();
-    $this->initializeDB();
-    $this->insertConfiguration();
+    // Install the amdinistration tab for the back office
+    if(!$this->createAdminTab()){
+      return false;
+    }
+
+    // Crate the configuration table
+    if(!$this->initializeDB()){
+      return false;
+    }
+
+    // Populate the configuration table
+    if(!$this->insertConfiguration()){
+      return false;
+    }
+
     return true;
   }
 
@@ -36,28 +52,39 @@ class Paygent extends Module
     if (!parent::uninstall()){
       return false;
     }
-    $this->deleteAdminTab();
-    $this->cleanupDB();
+
+    // Remove the administration tab from the back office
+    if(!$this->deleteAdminTab()){
+      return false;
+    }
+
+    // Delete the tables in the database
+    if(!$this->cleanupDB()){
+      return false;
+    }
+
     return true;
   }
 
-  /* DATABASE PART */
+  /******************
+   * DATABASE PART  *
+   ******************/
 
   // Create and populate module's tables
   private function initializeDB()
   {
-    Db::getInstance()->Execute('CREATE TABLE `'._DB_PREFIX_.'paygent_config` (
+    return Db::getInstance()->Execute('CREATE TABLE `'._DB_PREFIX_.'paygent_config` (
       `id_paygent_config` INT(10) NOT NULL AUTO_INCREMENT,
       `config_key` VARCHAR(255) NOT NULL ,
       `config_value` VARCHAR(255) NOT NULL ,
-      PRIMARY KEY (`id_paygent_config`))
+      PRIMARY KEY (`id_paygent_config`)
       ) ENGINE='._MYSQL_ENGINE_.' DEFAULT CHARSET=utf8');
   }
 
   // Insert keys for the configuration interface
   private function insertConfiguration()
   {
-    Db::getInstance()->Execute("INSERT INTO `"._DB_PREFIX_."paygent_config` (`config_key`, `config_value`)
+    return Db::getInstance()->Execute("INSERT INTO `"._DB_PREFIX_."paygent_config` (`config_key`, `config_value`)
       VALUES ('HASH_KEY', ''),
       ('MERCHANT_ID', '')"
     );
@@ -66,12 +93,13 @@ class Paygent extends Module
   // Cleanup the DB when the module is uninstalled
   private function cleanupDB()
   {
-    Db::getInstance()->Execute('DROP TABLE `'._DB_PREFIX_.'paygent_config`');
+    return Db::getInstance()->Execute('DROP TABLE `'._DB_PREFIX_.'paygent_config`');
   }
 
 
-
-  /* ADMIN TAB PART */
+  /******************
+   * ADMIN TAB PART *
+   ******************/
 
   private function createAdminTab()
   {
