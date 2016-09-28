@@ -21,6 +21,8 @@ class Paygent extends Module {
       return false;
     }
 
+    $this->initializeDB();
+
     if(self::installModuleTab('AdminPaygent', array('default' => 'Pay Systems'), 'AdminModules') == false){
       return false;
     }
@@ -30,10 +32,24 @@ class Paygent extends Module {
 
   public function uninstall() {
     if (!parent::uninstall()){
-      // Do the cleaning work
-      //Db::getInstance()->Execute('DELETE FROM `'._DB_PREFIX_.'paygent`');
+      $this->cleanupDB();
     }
     parent::uninstall();
+  }
+
+  // Create and populate module's tables
+  private function initializeDB(){
+    Db::getInstance()->Execute('CREATE TABLE `'._DB_PREFIX_.'paygent_config` (
+      `id_paygent_config` INT(10) NOT NULL AUTO_INCREMENT,
+      `config_key` VARCHAR(255) NOT NULL ,
+      `config_value` VARCHAR(255) NOT NULL ,
+      PRIMARY KEY (`id_paygent_config`))
+      ) ENGINE='._MYSQL_ENGINE_.' DEFAULT CHARSET=utf8');
+  }
+
+  // Cleanup the DB when the module is uninstalled
+  private function cleanupDB(){
+    Db::getInstance()->Execute('DROP TABLE `'._DB_PREFIX_.'paygent_config`');
   }
 }
 ?>
