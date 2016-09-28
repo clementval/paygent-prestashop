@@ -1,2 +1,5 @@
 # Ignored files
 *.zip
+
+# OS X hidden directory
+.DS_Store
