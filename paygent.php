@@ -12,8 +12,8 @@ class Paygent extends Module {
 
     parent::__construct();
 
-    $this->displayName = $this->l('Paygent payment module');
-    $this->description = $this->l('Payment module to handle transaction with Paygent credit card service.');
+    $this->displayName = $this->l('Paygent');
+    $this->description = $this->l('Accepts payments by credit cards with Paygent.');
   }
 
   public function install() {
