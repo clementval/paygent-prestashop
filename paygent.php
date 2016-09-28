@@ -22,7 +22,7 @@ class Paygent extends Module {
     }
 
     $this->initializeDB();
-
+    $this->insertConfiguration();
     if(self::installModuleTab('AdminPaygent', array('default' => 'Pay Systems'), 'AdminModules') == false){
       return false;
     }
@@ -45,6 +45,14 @@ class Paygent extends Module {
       `config_value` VARCHAR(255) NOT NULL ,
       PRIMARY KEY (`id_paygent_config`))
       ) ENGINE='._MYSQL_ENGINE_.' DEFAULT CHARSET=utf8');
+  }
+
+  // Insert keys for the configuration interface
+  private function insertConfiguration(){
+    Db::getInstance()->Execute("INSERT INTO `"._DB_PREFIX_."paygent_config` (`config_key`, `config_value`)
+      VALUES ('HASH_KEY', ''),
+      ('MERCHANT_ID', '')"
+    );
   }
 
   // Cleanup the DB when the module is uninstalled
