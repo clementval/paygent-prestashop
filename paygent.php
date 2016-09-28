@@ -2,13 +2,16 @@
 if (!defined('_PS_VERSION_'))
   exit;
 
-class Paygent extends Module {
-  public function __construct() {
+class Paygent extends Module
+{
+  public function __construct()
+  {
     $this->name = 'paygent';
     $this->tab = 'payments_gateways';
     $this->version = 1.0;
     $this->author = 'Valentin Clement';
     $this->need_instance = 0;
+    $this->ps_versions_compliancy = array('min' => '1.4', 'max' => '1.4');
 
     parent::__construct();
 
@@ -16,29 +19,33 @@ class Paygent extends Module {
     $this->description = $this->l('Accepts payments by credit cards with Paygent.');
   }
 
-  public function install() {
-    if (parent::install() == false){
+  public function install()
+  {
+    if (!parent::install()){
       return false;
     }
 
+    $this->createAdminTab();
     $this->initializeDB();
     $this->insertConfiguration();
-    if(self::installModuleTab('AdminPaygent', array('default' => 'Pay Systems'), 'AdminModules') == false){
-      return false;
-    }
-
     return true;
   }
 
-  public function uninstall() {
+  public function uninstall()
+  {
     if (!parent::uninstall()){
-      $this->cleanupDB();
+      return false;
     }
-    parent::uninstall();
+    $this->deleteAdminTab();
+    $this->cleanupDB();
+    return true;
   }
 
+  /* DATABASE PART */
+
   // Create and populate module's tables
-  private function initializeDB(){
+  private function initializeDB()
+  {
     Db::getInstance()->Execute('CREATE TABLE `'._DB_PREFIX_.'paygent_config` (
       `id_paygent_config` INT(10) NOT NULL AUTO_INCREMENT,
       `config_key` VARCHAR(255) NOT NULL ,
@@ -48,7 +55,8 @@ class Paygent extends Module {
   }
 
   // Insert keys for the configuration interface
-  private function insertConfiguration(){
+  private function insertConfiguration()
+  {
     Db::getInstance()->Execute("INSERT INTO `"._DB_PREFIX_."paygent_config` (`config_key`, `config_value`)
       VALUES ('HASH_KEY', ''),
       ('MERCHANT_ID', '')"
@@ -56,8 +64,40 @@ class Paygent extends Module {
   }
 
   // Cleanup the DB when the module is uninstalled
-  private function cleanupDB(){
+  private function cleanupDB()
+  {
     Db::getInstance()->Execute('DROP TABLE `'._DB_PREFIX_.'paygent_config`');
   }
+
+
+
+  /* ADMIN TAB PART */
+
+  private function createAdminTab()
+  {
+    $langs = Language::getLanguages();
+    $id_lang = (int)Configuration::get('PS_LANG_DEFAULT');
+    $admin_tab = new Tab();
+    $admin_tab->class_name = 'AdminPaygent';
+    $admin_tab->module = 'paygent';
+    $admin_tab->id_parent = 0;
+    foreach($langs as $l){
+      $admin_tab->name[$l['id_lang']] = $this->l('Paygent');
+    }
+    $admin_tab->save();
+    $tab_id = $admin_tab->id;
+    @copy(dirname(__FILE__).'/logo.gif',_PS_ROOT_DIR_.'/img/t/logo.gif');
+    Configuration::updateValue('PAYGENT_TAB_ID', $tab_id);
+    return true;
+  }
+
+  public function deleteAdminTab()
+  {
+    $admin_tab = new Tab(Configuration::get('PAYGENT_TAB_ID'));
+    $admin_tab->delete();
+    Configuration::deleteByName('PAYGENT_TAB_ID');
+    return true;
+  }
+
 }
 ?>
