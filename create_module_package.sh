@@ -5,5 +5,5 @@
 mkdir paygent
 cp *.php paygent/
 cp *.gif paygent/
-zip paygent.zip paygent
+zip paygent.zip paygent/*
 rm -rf paygent
