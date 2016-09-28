@@ -6,7 +6,7 @@ class AdminPaygent extends AdminTab {
 		$this->lang = true;
 		$this->edit = true;
 		$this->delete = true;
-    
+
 		parent::__construct();
 	}
 
@@ -15,6 +15,8 @@ class AdminPaygent extends AdminTab {
 		parent::displayForm();
 		if (!($obj = $this->loadObject(true)))
 			return;
+
+    echo '<h2>Paygent payement configuration</h2>';
 	}
 }
 ?>
