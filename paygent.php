@@ -44,6 +44,10 @@ class Paygent extends Module
       return false;
     }
 
+    if(!$this->registerHook('payment')){
+      return false;
+    }
+
     return true;
   }
 
