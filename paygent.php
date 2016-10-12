@@ -40,9 +40,7 @@ class Paygent extends Module
     }
 
     // Populate the configuration table
-    if(!$this->insertConfiguration()){
-      return false;
-    }
+    $this->insertConfiguration()
 
     if(!$this->registerHook('payment')){
       return false;
@@ -62,6 +60,8 @@ class Paygent extends Module
       return false;
     }
 
+    $this->deleteConfiguration();
+
     // Delete the tables in the database
     if(!$this->cleanupDB()){
       return false;
@@ -77,27 +77,35 @@ class Paygent extends Module
   // Create and populate module's tables
   private function initializeDB()
   {
-    return Db::getInstance()->Execute('CREATE TABLE `'._DB_PREFIX_.'paygent_config` (
+    /*return Db::getInstance()->Execute('CREATE TABLE `'._DB_PREFIX_.'paygent_config` (
       `id_paygent_config` INT(10) NOT NULL AUTO_INCREMENT,
       `config_key` VARCHAR(255) NOT NULL ,
       `config_value` VARCHAR(255) NOT NULL ,
       PRIMARY KEY (`id_paygent_config`)
-      ) ENGINE='._MYSQL_ENGINE_.' DEFAULT CHARSET=utf8');
+      ) ENGINE='._MYSQL_ENGINE_.' DEFAULT CHARSET=utf8');*/
   }
 
-  // Insert keys for the configuration interface
+  // Insert keys for the configuration
   private function insertConfiguration()
   {
-    return Db::getInstance()->Execute("INSERT INTO `"._DB_PREFIX_."paygent_config` (`config_key`, `config_value`)
+    Configuration::updateValue('PAYGENT_HASHKEY', '');
+    Configuration::updateValue('PAYGENT_MERCHANT_ID', '');
+    /*return Db::getInstance()->Execute("INSERT INTO `"._DB_PREFIX_."paygent_config` (`config_key`, `config_value`)
       VALUES ('HASH_KEY', ''),
       ('MERCHANT_ID', '')"
-    );
+    );*/
+  }
+
+  // Delete the configuration keys
+  private function deleteConfiguration(){
+    Configuration::deleteByName('PAYGENT_HASHKEY');
+    Configuration::deleteByName('PAYGENT_MERCHANT_ID');
   }
 
   // Cleanup the DB when the module is uninstalled
   private function cleanupDB()
   {
-    return Db::getInstance()->Execute('DROP TABLE `'._DB_PREFIX_.'paygent_config`');
+    //return Db::getInstance()->Execute('DROP TABLE `'._DB_PREFIX_.'paygent_config`');
   }
 
 
