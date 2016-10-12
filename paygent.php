@@ -42,7 +42,7 @@ class Paygent extends Module
     }
 
     // Populate the configuration table
-    $this->insertConfiguration()
+    $this->insertConfiguration();
 
     if(!$this->registerHook('payment')){
       return false;
