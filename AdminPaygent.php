@@ -15,24 +15,9 @@ class AdminPaygent extends AdminTab {
   {
     $sql = 'SELECT * FROM '._DB_PREFIX_.'paygent_config';
     if ($results = Db::getInstance()->ExecuteS($sql)){
-      $merchant_id = "";
-      $hash_key = "";
+      $merchant_id = Configuration::get('PAYGENT_MERCHANT_ID');
+      $hash_key = Configuration::get('PAYGENT_HASHKEY');
       $inform_url = "";
-      foreach ($results as $row){
-        switch ($row['config_key']) {
-          case 'HASH_KEY':
-              $hash_key = $row['config_value'];
-              break;
-          case 'MERCHANT_ID':
-              $merchant_id = $row['config_value'];
-              break;
-          case 'INFORM_URL':
-              $inform_url =  $row['config_value'];
-              break;
-          default:
-            echo 'Unknow key: '.$row['config_key'];
-        }
-      }
       echo "<h2>Paygent payement configuration</h2>";
       echo "<form>";
       echo "Merchant ID: <input type='text' name='merchant_id' value='".$merchant_id."'/></br>";
