@@ -85,6 +85,7 @@ class Paygent extends Module
       `config_value` VARCHAR(255) NOT NULL ,
       PRIMARY KEY (`id_paygent_config`)
       ) ENGINE='._MYSQL_ENGINE_.' DEFAULT CHARSET=utf8');*/
+    return true;
   }
 
   // Insert keys for the configuration
@@ -96,18 +97,21 @@ class Paygent extends Module
       VALUES ('HASH_KEY', ''),
       ('MERCHANT_ID', '')"
     );*/
+    return true;
   }
 
   // Delete the configuration keys
   private function deleteConfiguration(){
     Configuration::deleteByName('PAYGENT_HASHKEY');
     Configuration::deleteByName('PAYGENT_MERCHANT_ID');
+    return true;
   }
 
   // Cleanup the DB when the module is uninstalled
   private function cleanupDB()
   {
     //return Db::getInstance()->Execute('DROP TABLE `'._DB_PREFIX_.'paygent_config`');
+    return true;
   }
 
 
