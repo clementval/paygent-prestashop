@@ -8,8 +8,7 @@
   <a href="{$base_dir_ssl}modules/paygent/payment/submit.php" title="">
     <img src="{$logo}" alt="" style="float:left;" />
     <br />
-    {l s='Pay with your PayPal account, credit card (CB, Visa, Mastercard...), or private credit card' mod='paygent'}
-    {l s='Pay with your PayPal account' mod='paypal'}
+    {l s='Pay with your credit card via Paygent' mod='paygent'}
     <br style="clear:both" />
   </a>
 </p>
