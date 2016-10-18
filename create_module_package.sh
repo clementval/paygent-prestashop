@@ -7,5 +7,7 @@ cp *.php paygent/
 cp *.gif paygent/
 cp *.tpl paygent/
 cp -R controllers paygent/
+cp -R classes paygent/
+cp -R payment paygent/
 zip -r paygent.zip paygent/*
 rm -rf paygent
