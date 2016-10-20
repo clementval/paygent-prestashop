@@ -91,6 +91,7 @@ class Paygent extends Module
   // Insert keys for the configuration
   private function insertConfiguration()
   {
+    Configuration::updateValue('PAYGENT_ACTION_URL', '');
     Configuration::updateValue('PAYGENT_HASHKEY', '');
     Configuration::updateValue('PAYGENT_MERCHANT_ID', '');
     /*return Db::getInstance()->Execute("INSERT INTO `"._DB_PREFIX_."paygent_config` (`config_key`, `config_value`)
@@ -102,6 +103,7 @@ class Paygent extends Module
 
   // Delete the configuration keys
   private function deleteConfiguration(){
+    Configuration::deleteByName('PAYGENT_ACTION_URL');
     Configuration::deleteByName('PAYGENT_HASHKEY');
     Configuration::deleteByName('PAYGENT_MERCHANT_ID');
     return true;
