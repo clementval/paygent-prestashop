@@ -24,22 +24,26 @@ $paygent->set_payment_class($payment_class);
 $paygent->set_use_card_conf_number($use_card_conf_number);
 $hash = $paygent->generate_hash();
 ?>
-
 <html>
-<head></head>
-<body>
-Redirecting to Paygent credit card service ...
-
-<form method="POST" action="<?= $paygent_action ?>">
-  <input type="hidden" name="trading_id" value="<?= $trading_id ?>" /> <!-- transaction id -->
-  <input type="hidden" name="payment_type" value="<?= $payment_type ?>" />
-  <input type="hidden" name="id" value="<?= $id ?>" /> <!-- amount -->
-  <input type="hidden" name="seq_merchant_id" value="<?= $merchant_id ?>" />
-  <input type="hidden" name="payment_class" value="<?= $payment_class ?>" />
-  <input type="hidden" name="use_card_conf_number" value="<?= $use_card_conf_number ?>" />
-  <input type="hidden" name="customer_id" value="<?= $customer_id ?>" />
-  <input type="hidden" name="hc" value="<?= $hash ?>" />
-  <input type="submit" value="Payer" />
-</form>
-</body>
+  <head>
+    <title>Paygent</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  </head>
+  <body>
+    <p>Please wait, redirecting to Paygent Credit Card service... Thanks.<br/>
+    <a href="javascript:history.go(-1);">Cancel</a>
+  </p>
+  <body>
+    <form method="POST" action="<?= $paygent_action ?>" class="hiddent" id="paygent_form">
+      <input type="hidden" name="trading_id" value="<?= $trading_id ?>" /> <!-- transaction id -->
+      <input type="hidden" name="payment_type" value="<?= $payment_type ?>" />
+      <input type="hidden" name="id" value="<?= $id ?>" /> <!-- amount -->
+      <input type="hidden" name="seq_merchant_id" value="<?= $merchant_id ?>" />
+      <input type="hidden" name="payment_class" value="<?= $payment_class ?>" />
+      <input type="hidden" name="use_card_conf_number" value="<?= $use_card_conf_number ?>" />
+      <input type="hidden" name="customer_id" value="<?= $customer_id ?>" />
+      <input type="hidden" name="hc" value="<?= $hash ?>" />
+    </form>
+    <script type="text/javascript">$(document).ready(function(){$('#paygent_form').submit();});</script>
+  </body>
 </html>
