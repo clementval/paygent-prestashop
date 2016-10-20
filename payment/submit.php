@@ -5,7 +5,11 @@ include_once(dirname(__FILE__).'/../../../init.php');
 
 include_once(_PS_MODULE_DIR_.'paygent/classes/paygent.php');
 
-
+//$cart->id;
+$paygent = new Paygent();
+$paygent->load_configuration();
+$paygent_action = Configuration::get('PAYGENT_ACTION_URL');
+$merchant_id = $paygent->get_merchant_id();
 
 ?>
 
@@ -13,7 +17,8 @@ include_once(_PS_MODULE_DIR_.'paygent/classes/paygent.php');
 <head></head>
 <body>
 Redirecting to Paygent credit card service ...
-<form method="POST" action="https://sandbox.paygent.co.jp/v/u/request">
+
+<form method="POST" action="<?= $paygent_action ?>">
   <input type="hidden" name="trading_id" value="<?= $trading_id ?>" /> <!-- transaction id -->
   <input type="hidden" name="payment_type" value="<?= $payment_type ?>" />
   <input type="hidden" name="id" value="<?= $id ?>" /> <!-- amount -->
