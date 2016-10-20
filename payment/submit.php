@@ -6,6 +6,7 @@ include_once(dirname(__FILE__).'/../../../init.php');
 include_once(_PS_MODULE_DIR_.'paygent/classes/paygent.php');
 
 global $smarty;
+global $cart;
 $return_url = $smarty->tpl_vars['base_dir'].'history.php';
 $paygent = new Paygent();
 $paygent->load_configuration();
