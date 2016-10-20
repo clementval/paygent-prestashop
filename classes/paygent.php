@@ -31,6 +31,11 @@ class Paygent {
     $this->hash_key = "";
   }
 
+  function load_configuration(){
+    $this->hash_key = Configuration::get('PAYGENT_HASHKEY');
+    $this->merchant_id = Configuration::get('PAYGENT_MERCHANT_ID');
+  }
+
   function generate_hash(){
     return hash('sha256', $this->get_original_str());
   }
