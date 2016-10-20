@@ -5,12 +5,24 @@ include_once(dirname(__FILE__).'/../../../init.php');
 
 include_once(_PS_MODULE_DIR_.'paygent/classes/paygent.php');
 
-//$cart->id;
+
 $paygent = new Paygent();
 $paygent->load_configuration();
 $paygent_action = Configuration::get('PAYGENT_ACTION_URL');
 $merchant_id = $paygent->get_merchant_id();
-
+$trading_id = $cart->id;
+$id = $cart->getOrderTotal(true);
+$customer_id = $cart->id_customer;
+$payment_class = "0";
+$payment_type = "02";
+$use_card_conf_number = "1";
+$paygent->set_trading_id($trading_id);
+$paygent->set_payment_type($payment_type);
+$paygent->set_id($id);
+$paygent->set_customer_id($customer_id);
+$paygent->set_payment_class($payment_class);
+$paygent->set_use_card_conf_number($use_card_conf_number);
+$hash = $paygent->generate_hash();
 ?>
 
 <html>
