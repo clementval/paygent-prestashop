@@ -91,6 +91,10 @@ class Paygent {
     $this->merchant_id = $value;
   }
 
+  function get_merchant_id(){
+    return $this->merchant_id;
+  }
+
   function set_payment_term_day($value){
     $this->payment_term_day = $value;
   }
