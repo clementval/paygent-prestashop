@@ -5,7 +5,8 @@ include_once(dirname(__FILE__).'/../../../init.php');
 
 include_once(_PS_MODULE_DIR_.'paygent/classes/paygent.php');
 
-
+global $smarty;
+$return_url = $smarty->tpl_vars['base_dir'].'history.php';
 $paygent = new Paygent();
 $paygent->load_configuration();
 $paygent_action = Configuration::get('PAYGENT_ACTION_URL');
@@ -23,6 +24,7 @@ $paygent->set_customer_id($customer_id);
 $paygent->set_payment_class($payment_class);
 $paygent->set_use_card_conf_number($use_card_conf_number);
 $hash = $paygent->generate_hash();
+
 ?>
 <html>
   <head>
@@ -42,8 +44,10 @@ $hash = $paygent->generate_hash();
       <input type="hidden" name="payment_class" value="<?= $payment_class ?>" />
       <input type="hidden" name="use_card_conf_number" value="<?= $use_card_conf_number ?>" />
       <input type="hidden" name="customer_id" value="<?= $customer_id ?>" />
+      <input type="hidden" name="return_url" value="<?= $return_url ?>" />
       <input type="hidden" name="hc" value="<?= $hash ?>" />
+      <input type="submit" value="Pay"/> <!-- to be removed after dev -->
     </form>
-    <script type="text/javascript">$(document).ready(function(){$('#paygent_form').submit();});</script>
+  <!--  <script type="text/javascript">$(document).ready(function(){$('#paygent_form').submit();});</script> -->
   </body>
 </html>
