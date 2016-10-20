@@ -3,3 +3,6 @@
 
 # OS X hidden directory
 .DS_Store
+
+# IDEA
+.idea
