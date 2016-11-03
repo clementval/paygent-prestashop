@@ -2,7 +2,7 @@
 if (!defined('_PS_VERSION_'))
   exit;
 
-class Paygent extends Module
+class Paygent extends PaymentModule
 {
   public function __construct()
   {
@@ -181,6 +181,24 @@ class Paygent extends Module
     }
     return $this->display(__FILE__, $name);
   }
+
+  public function validateOrder($id_cart, $id_order_state, $amount_paid, $payment_method, $message, $transaction, $currency_special, $dont_touch_amount, $secure_key){
+    if($this->active){
+      parent::validateOrder(
+        (int) $id_cart,
+        (int) $id_order_state,
+        (float) $amount_paid,
+        $payment_method,
+        $message,
+        $transaction,
+        $currency_special,
+        $dont_touch_amount,
+        $secure_key
+      );
+    }
+  }
+
+
 
 }
 ?>
