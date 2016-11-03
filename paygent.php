@@ -95,6 +95,9 @@ class Paygent extends PaymentModule
     Configuration::updateValue('PAYGENT_ACTION_URL', '');
     Configuration::updateValue('PAYGENT_HASHKEY', '');
     Configuration::updateValue('PAYGENT_MERCHANT_ID', '');
+    Configuration::updateValue('PAYGENT_ORDER_STATUS_WAIT', '');
+    Configuration::updateValue('PAYGENT_ORDER_STATUS_ERROR', '');
+    Configuration::updateValue('PAYGENT_ORDER_STATUS_SUCCESS', '');
     return true;
   }
 
@@ -103,6 +106,9 @@ class Paygent extends PaymentModule
     Configuration::deleteByName('PAYGENT_ACTION_URL');
     Configuration::deleteByName('PAYGENT_HASHKEY');
     Configuration::deleteByName('PAYGENT_MERCHANT_ID');
+    Configuration::deleteByName('PAYGENT_ORDER_STATUS_WAIT');
+    Configuration::deleteByName('PAYGENT_ORDER_STATUS_SUCCESS');
+    Configuration::deleteByName('PAYGENT_ORDER_STATUS_ERROR');
     return true;
   }
 
