@@ -78,6 +78,12 @@ class Paygent {
     }
   }
 
+  function update_transaction($trading_id, $response){
+    return Db::getInstance()->Execute('UPDATE `'._DB_PREFIX_.'paygent_details`
+      SET `timestamp_response` = NOW(), `response` = '.$response.'
+      WHERE id_order = '.$trading_id);
+  }
+
   function set_trading_id($value){
     $this->trading_id = $value;
   }
