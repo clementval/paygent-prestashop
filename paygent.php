@@ -188,7 +188,7 @@ class Paygent extends PaymentModule
         (int) $id_cart,
         (int) $id_order_state,
         (float) $amount_paid,
-        'Paygent',
+        'Paygent'
       );
     }
   }
