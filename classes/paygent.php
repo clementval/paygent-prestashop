@@ -3,7 +3,7 @@
 include_once(dirname(__FILE__).'/../../../config/config.inc.php');
 include_once(dirname(__FILE__).'/../../../init.php');
 
-class Paygent {
+class PaygentHelper {
 
   private $trading_id;
   private $payment_type;
