@@ -11,7 +11,12 @@ if($trading_id != ""){
     $paygent->update_transaction($trading_id, $response);
 
     // Update the order status
-
+    $objOrder = new Order((int)$trading_id);
+    if(((int)$response) == 0) {
+      $objOrder->setCurrentState((int)Configuration::get('PAYGENT_ORDER_STATUS_SUCCESS'));
+    } else {
+      $objOrder->setCurrentState((int)Configuration::get('PAYGENT_ORDER_STATUS_ERROR'));
+    }
 }
 
 

@@ -29,8 +29,9 @@ $paygent_helper->set_use_card_conf_number($use_card_conf_number);
 $hash = $paygent_helper->generate_hash();
 
 $paygent_helper->insert_transaction();
-// TODO special order status for paygent
-$paygent->validateOrder($cart->id, 1, $id);
+
+$status = Configuration::get('PAYGENT_ORDER_STATUS_WAIT');
+$paygent->validateOrder($cart->id, $status, $id);
 
 ?>
 <html>

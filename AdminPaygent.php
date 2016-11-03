@@ -27,6 +27,9 @@ class AdminPaygent extends AdminTab {
     echo 'Paygent Action URL: <input type="text" name="action_url" value="'.$action_url.'"/></br>';
     echo 'Merchant ID: <input type="text" name="merchant_id" value="'.$merchant_id.'"/></br>';
     echo 'Hash key: <input type="text" name="hash_key" value="'.$hash_key.'"/></br>';
+    echo 'Order status (payment succeed): <input type="text" name="status_success" value="'.$hash_key.'"/></br>';
+    echo 'Order status (payment error): <input type="text" name="status_error" value="'.$hash_key.'"/></br>';
+    echo 'Order status (waiting): <input type="text" name="status_waiting" value="'.$hash_key.'"/></br>';
     echo '<input type="submit" name="paygent_config" value="Save" />';
     echo '</form>';
 
@@ -56,6 +59,9 @@ class AdminPaygent extends AdminTab {
       Configuration::updateValue('PAYGENT_ACTION_URL',  Tools::getValue('action_url'));
       Configuration::updateValue('PAYGENT_MERCHANT_ID',  Tools::getValue('merchant_id'));
       Configuration::updateValue('PAYGENT_HASHKEY', Tools::getValue('hash_key'));
+      Configuration::updateValue('PAYGENT_ORDER_STATUS_SUCCESS', Tools::getValue('status_success'));
+      Configuration::updateValue('PAYGENT_ORDER_STATUS_ERROR', Tools::getValue('status_error'));
+      Configuration::updateValue('PAYGENT_ORDER_STATUS_WAIT', Tools::getValue('status_waiting'));
     }
   }
 }
