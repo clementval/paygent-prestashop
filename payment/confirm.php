@@ -6,7 +6,7 @@ include_once(_PS_MODULE_DIR_.'paygent/classes/paygent.php');
 $paygent = new Paygent();
 $trading_id = trim($_POST["trading_id"]);
 $response = trim($_POST["response"]);
-$paygent->update_transaction($trading_id, $response));
+$paygent->update_transaction($trading_id, $response);
 
 /*
   $all_posts = "";
