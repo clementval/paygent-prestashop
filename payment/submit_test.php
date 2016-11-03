@@ -8,25 +8,26 @@ include_once(_PS_MODULE_DIR_.'paygent/classes/paygent_helper.php');
 global $smarty;
 global $cart;
 $return_url = $smarty->tpl_vars['base_dir'].'history.php';
-$paygent = new PaygentHelper();
-$paygent->load_configuration();
+$paygent_helper = new PaygentHelper();
+$paygent_helper->load_configuration();
 $paygent_action = Configuration::get('PAYGENT_ACTION_URL');
-$merchant_id = $paygent->get_merchant_id();
+$merchant_id = $paygent_helper->get_merchant_id();
 $trading_id = trim($_POST["test_trading_id"]);
 $id = trim($_POST["test_amount"]);
 $customer_id = trim($_POST["test_customer_id"]);
 $payment_class = "0";
 $payment_type = "02";
 $use_card_conf_number = "1";
-$paygent->set_trading_id($trading_id);
-$paygent->set_payment_type($payment_type);
-$paygent->set_id($id);
-$paygent->set_customer_id($customer_id);
-$paygent->set_payment_class($payment_class);
-$paygent->set_use_card_conf_number($use_card_conf_number);
-$hash = $paygent->generate_hash();
+$paygent_helper->set_trading_id($trading_id);
+$paygent_helper->set_payment_type($payment_type);
+$paygent_helper->set_id($id);
+$paygent_helper->set_customer_id($customer_id);
+$paygent_helper->set_payment_class($payment_class);
+$paygent_helper->set_use_card_conf_number($use_card_conf_number);
+$hash = $paygent_helper->generate_hash();
 
-$paygent->insert_transaction();
+$paygent_helper->insert_transaction();
+
 ?>
 <html>
   <head>
