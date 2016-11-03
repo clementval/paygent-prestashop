@@ -95,10 +95,6 @@ class Paygent extends Module
     Configuration::updateValue('PAYGENT_ACTION_URL', '');
     Configuration::updateValue('PAYGENT_HASHKEY', '');
     Configuration::updateValue('PAYGENT_MERCHANT_ID', '');
-    /*return Db::getInstance()->Execute("INSERT INTO `"._DB_PREFIX_."paygent_config` (`config_key`, `config_value`)
-      VALUES ('HASH_KEY', ''),
-      ('MERCHANT_ID', '')"
-    );*/
     return true;
   }
 
