@@ -182,18 +182,13 @@ class Paygent extends PaymentModule
     return $this->display(__FILE__, $name);
   }
 
-  public function validateOrder($id_cart, $id_order_state, $amount_paid, $payment_method, $message, $transaction, $currency_special, $dont_touch_amount, $secure_key){
+  public function validateOrder($id_cart, $id_order_state, $amount_paid) {
     if($this->active){
       parent::validateOrder(
         (int) $id_cart,
         (int) $id_order_state,
         (float) $amount_paid,
-        $payment_method,
-        $message,
-        $transaction,
-        $currency_special,
-        $dont_touch_amount,
-        $secure_key
+        'Paygent',
       );
     }
   }
