@@ -22,6 +22,7 @@ class AdminPaygent extends AdminTab {
 
     $inform_url = "";
     echo '<h2>Paygent payement configuration</h2>';
+    echo '<h3>Merchant configuration</h3>';
     echo '<form name="paygent_config" action="'.$currentIndex.'" method="post">';
     echo 'Paygent Action URL: <input type="text" name="action_url" value="'.$action_url.'"/></br>';
     echo 'Merchant ID: <input type="text" name="merchant_id" value="'.$merchant_id.'"/></br>';
@@ -29,15 +30,24 @@ class AdminPaygent extends AdminTab {
     echo '<input type="submit" name="paygent_config" value="Save" />';
     echo '</form>';
 
-    echo '<br><br><br>';
-    echo '<h3>Test payment</h3>';
-    echo '<form method="POST" action="'.__PS_BASE_URI__.'modules/paygent/payment/submit_test.php" id="paygent_form">';
-    echo 'Customer ID: <input type="text" name="test_customer_id"/><br>';
-    echo 'Amount: <input type="text" name="test_amount"/><br>';
-    echo 'Trading ID: <input type="text" name="test_trading_id"/><br>';
-    echo '<input type="submit" value="Test"/>';
-    echo '</form>';
-    echo '<br><br><br>';
+    if($action_url != "" && $merchant_id != "" && $hash_key != "") {
+      echo '<br><br>';
+      echo '<h3>Test payment</h3>';
+      echo '<form method="POST" action="'.__PS_BASE_URI__.'modules/paygent/payment/submit_test.php" id="paygent_form">';
+      echo 'Customer ID: <input type="text" name="test_customer_id"/><br>';
+      echo 'Amount: <input type="text" name="test_amount"/><br>';
+      echo 'Trading ID: <input type="text" name="test_trading_id"/><br>';
+      echo '<input type="submit" value="Test"/>';
+      echo '</form>';
+      echo '<br>';
+
+      echo '<h3>Test response from Paygent</h3>';
+      echo '<form method="POST" action="'.__PS_BASE_URI__.'modules/paygent/payment/confirm.php">';
+      echo 'Trading ID: <input type="text" name="trading_id"/><br>';
+      echo 'Response (0/1): <input type="text" name="response"/><br>';
+      echo '<input type="submit" value="Test"/>';
+      echo '</form>';
+    }
   }
 
   public function postProcess()
