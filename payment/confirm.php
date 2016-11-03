@@ -1,12 +1,19 @@
 <?php
 include_once(dirname(__FILE__).'/../../../config/config.inc.php');
 include_once(dirname(__FILE__).'/../../../init.php');
-include_once(_PS_MODULE_DIR_.'paygent/classes/paygent.php');
+include_once(_PS_MODULE_DIR_.'paygent/classes/paygent_helper.php');
 
-$paygent = new Paygent();
+$paygent = new PaygentHelper();
 $trading_id = trim($_POST["trading_id"]);
 $response = trim($_POST["response"]);
-$paygent->update_transaction($trading_id, $response);
+if($trading_id != ""){
+    // Update the information in DB
+    $paygent->update_transaction($trading_id, $response);
+
+    // Update the order status
+
+}
+
 
 /*
   $all_posts = "";

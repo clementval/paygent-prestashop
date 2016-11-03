@@ -3,12 +3,12 @@
 include_once(dirname(__FILE__).'/../../../config/config.inc.php');
 include_once(dirname(__FILE__).'/../../../init.php');
 
-include_once(_PS_MODULE_DIR_.'paygent/classes/paygent.php');
+include_once(_PS_MODULE_DIR_.'paygent/classes/paygent_helper.php');
 
 global $smarty;
 global $cart;
 $return_url = $smarty->tpl_vars['base_dir'].'history.php';
-$paygent = new Paygent();
+$paygent = new PaygentHelper();
 $paygent->load_configuration();
 $paygent_action = Configuration::get('PAYGENT_ACTION_URL');
 $merchant_id = $paygent->get_merchant_id();
