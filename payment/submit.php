@@ -26,6 +26,7 @@ $paygent->set_payment_class($payment_class);
 $paygent->set_use_card_conf_number($use_card_conf_number);
 $hash = $paygent->generate_hash();
 
+$paygent->insert_transaction();
 ?>
 <html>
   <head>

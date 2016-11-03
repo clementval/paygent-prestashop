@@ -26,6 +26,7 @@ $paygent->set_payment_class($payment_class);
 $paygent->set_use_card_conf_number($use_card_conf_number);
 $hash = $paygent->generate_hash();
 
+$paygent->insert_transaction();
 ?>
 <html>
   <head>
@@ -34,10 +35,10 @@ $hash = $paygent->generate_hash();
   </head>
   <body>
     <p>
-        Test information:
-        Trading ID: <?= $trading_id ?>
-        Amount: <?= $amount ?>
-        Customer ID: <?= $customer_id ?>
+        <h2>Test information</h2>
+        Trading ID: <?= $trading_id ?></br>
+        Amount: <?= $id ?></br>
+        Customer ID: <?= $customer_id ?></br>
     </p>
   <body>
     <form method="POST" action="<?= $paygent_action ?>" class="hiddent" id="paygent_form">

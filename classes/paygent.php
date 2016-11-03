@@ -1,4 +1,8 @@
 <?php
+
+include_once(dirname(__FILE__).'/../../../config/config.inc.php');
+include_once(dirname(__FILE__).'/../../../init.php');
+
 class Paygent {
 
   private $trading_id;
@@ -65,6 +69,13 @@ class Paygent {
       $rand_str .= $rand_char[rand(0, count($rand_char)-1)];
     }
     return $rand_str;
+  }
+
+  function insert_transaction(){
+    if($this->trading_id != ""){
+      return Db::getInstance()->Execute('INSERT INTO `'._DB_PREFIX_.'paygent_details` (`id_order`, `amount`, `timestamp_sent`)
+        VALUES ('.$this->trading_id.', '.$this->id.', NOW())');
+    }
   }
 
   function set_trading_id($value){
