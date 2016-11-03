@@ -79,13 +79,14 @@ class Paygent extends Module
   // Create and populate module's tables
   private function initializeDB()
   {
-    /*return Db::getInstance()->Execute('CREATE TABLE `'._DB_PREFIX_.'paygent_config` (
-      `id_paygent_config` INT(10) NOT NULL AUTO_INCREMENT,
-      `config_key` VARCHAR(255) NOT NULL ,
-      `config_value` VARCHAR(255) NOT NULL ,
-      PRIMARY KEY (`id_paygent_config`)
-      ) ENGINE='._MYSQL_ENGINE_.' DEFAULT CHARSET=utf8');*/
-    return true;
+    return Db::getInstance()->Execute('CREATE TABLE `'._DB_PREFIX_.'paygent_details (
+      `id_paygent_details` INT NOT NULL AUTO_INCREMENT ,
+      `id_order` INT NOT NULL , `amount` INT NOT NULL ,
+      `response` INT NULL ,
+      `timestamp_sent` DATETIME NOT NULL ,
+      `timestamp_response` DATETIME NULL ,
+      PRIMARY KEY (`id_paygent_details`))
+      ENGINE = '._MYSQL_ENGINE_.' DEFAULT CHARSET=utf8');
   }
 
   // Insert keys for the configuration
@@ -112,8 +113,7 @@ class Paygent extends Module
   // Cleanup the DB when the module is uninstalled
   private function cleanupDB()
   {
-    //return Db::getInstance()->Execute('DROP TABLE `'._DB_PREFIX_.'paygent_config`');
-    return true;
+    return Db::getInstance()->Execute('DROP TABLE `'._DB_PREFIX_.'paygent_details`');
   }
 
 
