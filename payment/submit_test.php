@@ -18,12 +18,14 @@ $customer_id = trim($_POST["test_customer_id"]);
 $payment_class = "0";
 $payment_type = "02";
 $use_card_conf_number = "1";
+$pay_term_min = "60";
 $paygent_helper->set_trading_id($trading_id);
 $paygent_helper->set_payment_type($payment_type);
 $paygent_helper->set_id($id);
 $paygent_helper->set_customer_id($customer_id);
 $paygent_helper->set_payment_class($payment_class);
 $paygent_helper->set_use_card_conf_number($use_card_conf_number);
+$paygent_helper->set_payment_term_min($pay_term_min);
 $hash = $paygent_helper->generate_hash();
 
 $paygent_helper->insert_transaction();
@@ -49,6 +51,7 @@ $paygent_helper->insert_transaction();
       <input type="hidden" name="seq_merchant_id" value="<?= $merchant_id ?>" />
       <input type="hidden" name="payment_class" value="<?= $payment_class ?>" />
       <input type="hidden" name="use_card_conf_number" value="<?= $use_card_conf_number ?>" />
+      <input type="hidden" name="payment_term_min" value="<?= $pay_term_min ?>" />
       <input type="hidden" name="customer_id" value="<?= $customer_id ?>" />
       <input type="hidden" name="return_url" value="<?= $return_url ?>" />
       <input type="hidden" name="hc" value="<?= $hash ?>" />
