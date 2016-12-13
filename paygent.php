@@ -79,12 +79,19 @@ class Paygent extends PaymentModule
   // Create and populate module's tables
   private function initializeDB()
   {
-    return Db::getInstance()->Execute('CREATE TABLE `'._DB_PREFIX_.'paygent_details (
+    return Db::getInstance()->Execute('CREATE TABLE `'._DB_PREFIX_.'paygent_details` (
       `id_paygent_details` INT NOT NULL AUTO_INCREMENT ,
-      `id_order` INT NOT NULL , `amount` INT NOT NULL ,
-      `response` INT NULL ,
-      `timestamp_sent` DATETIME NOT NULL ,
-      `timestamp_response` DATETIME NULL ,
+      `timestamp` DATETIME NULL ,
+      `hc` VARCHAR( 255 ) NOT NULL ,
+      `acq_id` INT NOT NULL ,
+      `acq_name` VARCHAR( 63 ) NOT NULL ,
+      `payment_status` INT NOT NULL ,
+      `payment_class` INT NOT NULL ,
+      `payment_notice_id` INT NOT NULL ,
+      `trading_id` INT NOT NULL ,
+      `payment_id` DOUBLE NOT NULL ,
+      `payment_amount` INT NOT NULL ,
+      `payment_type` INT NOT NULL ,
       PRIMARY KEY (`id_paygent_details`))
       ENGINE = '._MYSQL_ENGINE_.' DEFAULT CHARSET=utf8');
   }
