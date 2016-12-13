@@ -86,7 +86,7 @@ class PaygentHelper {
         NOW(), \''.$hc.'\', '.$acq_id.', \''.$acq_name.'\',
         '.$payment_status.', '.$payment_class.', '.$payment_notice_id.',
         '.$trading_id.', '.$payment_id.', '.$payment_amount.', '.$payment_type.'
-      )';
+      )');
   }
 
   function set_trading_id($value){
