@@ -20,7 +20,7 @@ $customer_id = $cart->id_customer;
 $payment_class = "0";
 $payment_type = "02";
 $use_card_conf_number = "1";
-$pay_term_min = "60";
+$pay_term_min = "15";
 $paygent_helper->set_trading_id($trading_id);
 $paygent_helper->set_payment_type($payment_type);
 $paygent_helper->set_id($id);
