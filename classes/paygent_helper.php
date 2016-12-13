@@ -73,15 +73,20 @@ class PaygentHelper {
 
   function insert_transaction(){
     if($this->trading_id != ""){
-      return Db::getInstance()->Execute('INSERT INTO `'._DB_PREFIX_.'paygent_details` (`id_order`, `amount`, `timestamp_sent`)
+      return Db::getInstance()->Execute('INSERT INTO `'._DB_PREFIX_.'paygent_details` (`trading_id`, `payment_amount`, `timestamp`)
         VALUES ('.$this->trading_id.', '.$this->id.', NOW())');
     }
   }
 
-  function update_transaction($trading_id, $response){
-    return Db::getInstance()->Execute('UPDATE `'._DB_PREFIX_.'paygent_details`
-      SET `timestamp_response` = NOW(), `response` = '.$response.'
-      WHERE id_order = '.$trading_id);
+  function update_transaction($trading_id, $hc, $acq_id, $acq_name, $payment_status, $payment_class, $payment_notice_id, $payment_id, $payment_amount, $payment_type){
+    return Db::getInstance()->Execute('INSERT INTO
+      `'._DB_PREFIX_.'paygent_details` (`timestamp`, `hc`, `acq_id`, `acq_name`,
+      `payment_status`, `payment_class`, `payment_notice_id`, `trading_id`,
+      `payment_id`, `payment_amount`, `payment_type`) VALUES (
+        NOW(), \''.$hc.'\', '.$acq_id.', \''.$acq_name.'\',
+        '.$payment_status.', '.$payment_class.', '.$payment_notice_id.',
+        '.$trading_id.', '.$payment_id.', '.$payment_amount.', '.$payment_type.'
+      )';
   }
 
   function set_trading_id($value){
