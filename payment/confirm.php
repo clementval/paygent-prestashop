@@ -21,7 +21,7 @@ if($trading_id != ""){
 
     // Update the order status
     $objOrder = new Order((int)$trading_id);
-    if(((int)$response) == 0) {
+    if(((int)$payement_status) == 20) { // Authorization OK
       $objOrder->setCurrentState((int)Configuration::get('PAYGENT_ORDER_STATUS_SUCCESS'));
     } else {
       $objOrder->setCurrentState((int)Configuration::get('PAYGENT_ORDER_STATUS_ERROR'));
