@@ -35,7 +35,7 @@ if($trading_id != ""){
     $objOrder = new Order((int)$trading_id);
     if(((int)$payment_status) == 20) { // Authorization OK
       $objOrder->setCurrentState(2);
-      /*echo "result=0<br>";
+      echo "result=0<br>";
       echo "response_code=<br>";
       echo "response_detail=<br>";
       //echo "url=".$url."<br>";
@@ -44,13 +44,10 @@ if($trading_id != ""){
     /*  echo "limit_date=".$limit_date."<br>";
       echo "trade_generation_date=".$trade_generation_date."<br>";*/
 
-      echo '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">';
-      echo '<HTML><HEAD><TITLE>XXXXXXXX</TITLE></HEAD>';
-      echo '<BODY></BODY></HTML>';
 
     } else {
       $objOrder->setCurrentState(8);
-      /*echo "result=1<br>";
+      echo "result=1<br>";
       echo "response_code=<br>";
       echo "response_detail=<br>";
       //echo "url=".$url."<br>";
