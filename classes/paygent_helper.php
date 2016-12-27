@@ -82,16 +82,16 @@ class PaygentHelper {
                               $post_acq_name, $post_payment_status,
                               $post_payment_class, $post_payment_notice_id,
                               $post_payment_id, $post_payment_amount,
-                              $post_payment_type)
+                              $post_payment_type, $all_posts)
   {
     return Db::getInstance()->Execute('INSERT INTO
       `'._DB_PREFIX_.'paygent_details` (`timestamp`, `hc`, `acq_id`, `acq_name`,
       `payment_status`, `payment_class`, `payment_notice_id`, `trading_id`,
-      `payment_id`, `payment_amount`, `payment_type`) VALUES (
+      `payment_id`, `payment_amount`, `payment_type`, `all_posts`) VALUES (
         NOW(), \''.$post_hc.'\', '.$post_acq_id.', \''.$post_acq_name.'\',
         '.$post_payment_status.', '.$post_payment_class.',
         '.$post_payment_notice_id.', '.$post_trading_id.', '.$post_payment_id.',
-        '.$post_payment_amount.', '.$post_payment_type.'
+        '.$post_payment_amount.', '.$post_payment_type.', '.$all_posts.'
       )');
   }
 
