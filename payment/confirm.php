@@ -5,7 +5,7 @@ include_once(_PS_MODULE_DIR_.'paygent/classes/paygent_helper.php');
 
 $all_posts = "";
 foreach ($_POST as $key => $value) {
-  $all_posts = $all_posts.'Field:'.htmlspecialchars($key).'//'..htmlspecialchars($value);
+  $all_posts = $all_posts.'Field:'.htmlspecialchars($key).'//'.htmlspecialchars($value);
 }
 
 $paygent_helper = new PaygentHelper();
@@ -31,7 +31,7 @@ if($trading_id != ""){
 
     // Update the order status
     $objOrder = new Order((int)$trading_id);
-    if(((int)$payement_status) == 20) { // Authorization OK
+    if(((int)$payment_status) == 20) { // Authorization OK
       $objOrder->setCurrentState((int)Configuration::get('PAYGENT_ORDER_STATUS_SUCCESS'));
       echo "result=0<br>";
       echo "response_code=<br>";

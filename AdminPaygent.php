@@ -50,7 +50,15 @@ class AdminPaygent extends AdminTab {
       echo '<h3>Test response from Paygent</h3>';
       echo '<form method="POST" action="'.__PS_BASE_URI__.'modules/paygent/payment/confirm.php">';
       echo 'Trading ID: <input type="text" name="trading_id"/><br>';
-      echo 'Response (0/1): <input type="text" name="response"/><br>';
+      echo 'Acq ID: <input type="text" name="acq_id" value="50001"/><br>';
+      echo 'Acq Name: <input type="text" name="acq_name" value="NICOS"/><br>';
+      echo 'Hash value: <input type="text" name="hc"/><br>';
+      echo 'Payment Status: <input type="text" name="payment_status" value="20"/><br>';
+      echo 'Payment Class: <input type="text" name="payment_class" value="10"/><br>';
+      echo 'Payment Notice ID: <input type="text" name="payment_notice_id" value="8"/><br>';
+      echo 'Payment ID: <input type="text" name="payment_id"/><br>';
+      echo 'Payment Amount: <input type="text" name="payment_amount"/><br>';
+      echo 'Payment Type: <input type="text" name="payment_type" value="2"/><br>';
       echo '<input type="submit" value="Test"/>';
       echo '</form>';
     }
