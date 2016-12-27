@@ -47,6 +47,8 @@ $paygent->validateOrder($cart->id, $status, $id);
   </p>
   <body>
     <form method="POST" action="<?= $paygent_action ?>" class="hiddent" id="paygent_form">
+      <input type="hidden" name="language_code" value="en" />
+      <input type="hidden" name="currency_code" value="EUR" />
       <input type="hidden" name="trading_id" value="<?= $trading_id ?>" /> <!-- transaction id -->
       <input type="hidden" name="payment_type" value="<?= $payment_type ?>" />
       <input type="hidden" name="id" value="<?= $id ?>" /> <!-- amount -->
