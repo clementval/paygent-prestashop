@@ -91,7 +91,7 @@ class PaygentHelper {
         NOW(), \''.$post_hc.'\', '.$post_acq_id.', \''.$post_acq_name.'\',
         '.$post_payment_status.', '.$post_payment_class.',
         '.$post_payment_notice_id.', '.$post_trading_id.', '.$post_payment_id.',
-        '.$post_payment_amount.', '.$post_payment_type.', '.$all_posts.'
+        '.$post_payment_amount.', '.$post_payment_type.', \''.$all_posts.'\'
       )');
   }
 
