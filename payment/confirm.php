@@ -7,6 +7,7 @@ $all_posts = "";
 foreach ($_POST as $key => $value) {
   $all_posts = $all_posts.'Field:'.htmlspecialchars($key).'//'.htmlspecialchars($value);
 }
+$all_posts = $all_posts.'Field:HTTP//'.$_SERVER['HTTP_REFERER'];
 
 $paygent_helper = new PaygentHelper();
 $trading_id = trim($_POST["trading_id"]);
@@ -25,6 +26,8 @@ $payment_type = trim($_POST["payment_type"]);
 
 
 
+
+
 if($trading_id != ""){
     // Update the information in DB
     $paygent_helper->update_transaction($trading_id, $hc, $acq_id, $acq_name, $payment_status, $payment_class, $payment_notice_id, $payment_id, $payment_amount, $payment_type, $all_posts);
@@ -32,7 +35,7 @@ if($trading_id != ""){
     // Update the order status
     $objOrder = new Order((int)$trading_id);
     if(((int)$payment_status) == 20) { // Authorization OK
-      $objOrder->setCurrentState((int)Configuration::get('PAYGENT_ORDER_STATUS_SUCCESS'));
+      $objOrder->setCurrentState(2);
       echo "result=0<br>";
       echo "response_code=<br>";
       echo "response_detail=<br>";
@@ -42,7 +45,7 @@ if($trading_id != ""){
     /*  echo "limit_date=".$limit_date."<br>";
       echo "trade_generation_date=".$trade_generation_date."<br>";*/
     } else {
-      $objOrder->setCurrentState((int)Configuration::get('PAYGENT_ORDER_STATUS_ERROR'));
+      $objOrder->setCurrentState(8);
       echo "result=1<br>";
       echo "response_code=<br>";
       echo "response_detail=<br>";
