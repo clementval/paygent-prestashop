@@ -2,12 +2,7 @@
 include_once(dirname(__FILE__).'/../../../config/config.inc.php');
 include_once(dirname(__FILE__).'/../../../init.php');
 include_once(_PS_MODULE_DIR_.'paygent/classes/paygent_helper.php');
-/*
-$all_posts = "";
-foreach ($_POST as $key => $value) {
-  $all_posts = $all_posts.'Field:'.htmlspecialchars($key).'//'.htmlspecialchars($value);
-}
-*/
+
 $paygent_helper = new PaygentHelper();
 $trading_id = trim($_POST["trading_id"]);
 $hc = trim($_POST["hc"]);
@@ -19,13 +14,6 @@ $payment_notice_id = trim($_POST["payment_notice_id"]);
 $payment_id = trim($_POST["payment_id"]);
 $payment_amount = trim($_POST["payment_amount"]);
 $payment_type = trim($_POST["payment_type"]);
-//$limit_date = trim($_POST["limit_date"]);
-//$trade_generation_date = trim($_POST["trade_generation_date"]);
-//$url = trim($_POST["url"]);
-
-
-
-
 
 if($trading_id != ""){
     // Update the information in DB
