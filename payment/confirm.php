@@ -14,6 +14,9 @@ $payment_notice_id = trim($_POST["payment_notice_id"]);
 $payment_id = trim($_POST["payment_id"]);
 $payment_amount = trim($_POST["payment_amount"]);
 $payment_type = trim($_POST["payment_type"]);
+$limit_date = trim($_POST["limit_date"]);
+$trade_generation_date = trim($_POST["trade_generation_date"]);
+$url = trim($_POST["url"]);
 
 if($trading_id != ""){
     // Update the information in DB
@@ -23,18 +26,24 @@ if($trading_id != ""){
     $objOrder = new Order((int)$trading_id);
     if(((int)$payement_status) == 20) { // Authorization OK
       $objOrder->setCurrentState((int)Configuration::get('PAYGENT_ORDER_STATUS_SUCCESS'));
-      echo "result=0";
-      echo "response_code=";
-      echo "response_detail=";
-      //echo "url=https://service.paygent.co.jp/linktype/top?type=&tid=book_101121&mid=10011212&hv=MFEwMTAyMDAw
-      echo "trading_id=".$trading_id;
+      echo "result=0<br>";
+      echo "response_code=<br>";
+      echo "response_detail=<br>";
+      echo "url=".$url."<br>";
+      echo "trading_id=".$trading_id."<br>";
+      echo "payment_type=".$payment_type."<br>";
+      echo "limit_date=".$limit_date."<br>";
+      echo "trade_generation_date=".$trade_generation_date."<br>";
     } else {
       $objOrder->setCurrentState((int)Configuration::get('PAYGENT_ORDER_STATUS_ERROR'));
-      echo "result=1";
-      echo "response_code=";
-      echo "response_detail=";
-      //echo "url=https://service.paygent.co.jp/linktype/top?type=&tid=book_101121&mid=10011212&hv=MFEwMTAyMDAw
-      echo "trading_id=".$trading_id;
+      echo "result=1<br>";
+      echo "response_code=<br>";
+      echo "response_detail=<br>";
+      echo "url=".$url."<br>";
+      echo "trading_id=".$trading_id."<br>";
+      echo "payment_type=".$payment_type."<br>";
+      echo "limit_date=".$limit_date."<br>";
+      echo "trade_generation_date=".$trade_generation_date."<br>";
     }
 }
 
