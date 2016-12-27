@@ -35,26 +35,10 @@ if($trading_id != ""){
     $objOrder = new Order((int)$trading_id);
     if(((int)$payment_status) == 20) { // Authorization OK
       $objOrder->setCurrentState(2);
-      echo "result=0<br>";
-      echo "response_code=<br>";
-      echo "response_detail=<br>";
-      //echo "url=".$url."<br>";
-      echo "trading_id=".$trading_id."<br>";
-      echo "payment_type=".$payment_type."<br>";
-    /*  echo "limit_date=".$limit_date."<br>";
-      echo "trade_generation_date=".$trade_generation_date."<br>";*/
-
-
+      return 0;
     } else {
       $objOrder->setCurrentState(8);
-      echo "result=1<br>";
-      echo "response_code=<br>";
-      echo "response_detail=<br>";
-      //echo "url=".$url."<br>";
-      echo "trading_id=".$trading_id."<br>";
-      echo "payment_type=".$payment_type."<br>";
-      /*echo "limit_date=".$limit_date."<br>";
-      echo "trade_generation_date=".$trade_generation_date."<br>";*/
+      return 1;
     }
 }
 
