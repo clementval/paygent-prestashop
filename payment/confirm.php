@@ -15,7 +15,7 @@ $payment_id = trim($_POST["payment_id"]);
 $payment_amount = trim($_POST["payment_amount"]);
 $payment_type = trim($_POST["payment_type"]);
 
-if($trading_id != ""){
+if($trading_id != "") {
     // Update the information in DB
     $paygent_helper->update_transaction($trading_id, $hc, $acq_id, $acq_name,
                                         $payment_status, $payment_class,
@@ -26,10 +26,14 @@ if($trading_id != ""){
     $objOrder = new Order((int)$trading_id);
     if(((int)$payment_status) == 20) { // Authorization OK
       $objOrder->setCurrentState(2);
-      echo 0; // Returning the ack to Paygent. TODO not good format yet
     } else {
+      // Cancel order
       $objOrder->setCurrentState(8);
     }
+
+    // Acknoledge the request from Paygent server
+    http_response_code(200);
+    echo 'result=0';
 }
 
 ?>
