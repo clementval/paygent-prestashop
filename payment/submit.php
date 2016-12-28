@@ -28,12 +28,6 @@ if($currency_code == "JPY"){
   $id = round($id);
 }
 
-// Validate the order and get the order id
-$status = Configuration::get('PAYGENT_ORDER_STATUS_WAIT');
-$paygent = new Paygent();
-$paygent->validateOrder($cart->id, $status, $id);
-$order_id = $paygent->currentOrder;
-
 $return_url = $smarty->tpl_vars['base_dir'].'history.php';
 $paygent_helper = new PaygentHelper();
 $paygent_helper->load_configuration();
