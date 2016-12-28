@@ -22,6 +22,7 @@ class AdminPaygent extends AdminTab {
     $status_waiting = Configuration::get('PAYGENT_ORDER_STATUS_WAIT');
     $status_success = Configuration::get('PAYGENT_ORDER_STATUS_SUCCESS');
     $status_error = Configuration::get('PAYGENT_ORDER_STATUS_ERROR');
+    $security_token = Configuration::get('PAYGENT_SECURITY_TOKEN');
 
     $inform_url = "";
     echo '<h2>Paygent payement configuration</h2>';
@@ -33,6 +34,7 @@ class AdminPaygent extends AdminTab {
     echo 'Order status (payment succeed): <input type="text" name="status_success" value="'.$status_success.'"/></br>';
     echo 'Order status (payment error): <input type="text" name="status_error" value="'.$status_error.'"/></br>';
     echo 'Order status (waiting): <input type="text" name="status_waiting" value="'.$status_waiting.'"/></br>';
+    echo 'Security token: <input type="text" name="security_token" value="'.$security_token.'"/></br>';
     echo '<input type="submit" name="paygent_config" value="Save" />';
     echo '</form>';
 
@@ -73,6 +75,7 @@ class AdminPaygent extends AdminTab {
       Configuration::updateValue('PAYGENT_ORDER_STATUS_SUCCESS', Tools::getValue('status_success'));
       Configuration::updateValue('PAYGENT_ORDER_STATUS_ERROR', Tools::getValue('status_error'));
       Configuration::updateValue('PAYGENT_ORDER_STATUS_WAIT', Tools::getValue('status_waiting'));
+      Configuration::updateValue('PAYGENT_SECURITY_TOKEN', Tools::getValue('security_token'));
     }
   }
 }
