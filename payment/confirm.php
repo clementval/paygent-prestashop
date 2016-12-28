@@ -17,16 +17,18 @@ $payment_type = trim($_POST["payment_type"]);
 
 if($trading_id != ""){
     // Update the information in DB
-    $paygent_helper->update_transaction($trading_id, $hc, $acq_id, $acq_name, $payment_status, $payment_class, $payment_notice_id, $payment_id, $payment_amount, $payment_type);
+    $paygent_helper->update_transaction($trading_id, $hc, $acq_id, $acq_name,
+                                        $payment_status, $payment_class,
+                                        $payment_notice_id, $payment_id,
+                                        $payment_amount, $payment_type);
 
     // Update the order status
     $objOrder = new Order((int)$trading_id);
     if(((int)$payment_status) == 20) { // Authorization OK
       $objOrder->setCurrentState(2);
-      return 0;
+      echo 0;
     } else {
       $objOrder->setCurrentState(8);
-      return 1;
     }
 }
 
