@@ -92,6 +92,7 @@ class Paygent extends PaymentModule
       `payment_id` DOUBLE NOT NULL ,
       `payment_amount` INT NOT NULL ,
       `payment_type` INT NOT NULL ,
+      `order_id` INT NOT NULL ,
       PRIMARY KEY (`id_details`))
       ENGINE = '._MYSQL_ENGINE_.' DEFAULT CHARSET=utf8');
   }
