@@ -9,6 +9,26 @@ include_once(_PS_MODULE_DIR_.'paygent/paygent.php');
 global $smarty;
 global $cart;
 global $currency;
+
+$cart_currency = $cart->id_currency;
+$currency_code = $currency->iso_code;
+
+if(($currency_code != "JPY"
+    && $currency_code != "USD"
+    && $currency_code != "EUR")
+    || $cart_currency != $currency->id)
+{
+  echo "An error occured. Mismatch currency (".$currency_code.")";
+  return;
+}
+
+$id = $cart->getOrderTotal(true); // Cart price
+
+if($currency_code == "JPY"){
+  $id = round($id);
+}
+
+
 $return_url = $smarty->tpl_vars['base_dir'].'history.php';
 $paygent_helper = new PaygentHelper();
 $paygent = new Paygent();
@@ -16,7 +36,6 @@ $paygent_helper->load_configuration();
 $paygent_action = Configuration::get('PAYGENT_ACTION_URL');
 $merchant_id = $paygent_helper->get_merchant_id();
 $trading_id = $cart->id;
-$id = $cart->getOrderTotal(true);
 $customer_id = $cart->id_customer;
 $payment_class = "0";
 $payment_type = "02";
@@ -35,16 +54,6 @@ $paygent_helper->insert_transaction();
 
 $status = Configuration::get('PAYGENT_ORDER_STATUS_WAIT');
 $paygent->validateOrder($cart->id, $status, $id);
-
-$cart_currency = $cart->id_currency;
-$currency_code = $currency->iso_code;
-
-if($currency_code != "JPY" && $currency_code != "USD"
-    && $currency_code != "EUR")
-{
-  echo "An error occured";
-  return;
-}
 
 ?>
 <html>
