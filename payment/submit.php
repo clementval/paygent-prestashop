@@ -58,7 +58,6 @@ $paygent->validateOrder($cart->id, $status, $id);
       <input type="hidden" name="customer_id" value="<?= $customer_id ?>" />
       <input type="hidden" name="return_url" value="<?= $return_url ?>" />
       <input type="hidden" name="hc" value="<?= $hash ?>" />
-      <input type="hidden" name="isbtob" value="1" />
       <input type="submit" value="Pay"/> <!-- to be removed after dev -->
     </form>
   <!--  <script type="text/javascript">$(document).ready(function(){$('#paygent_form').submit();});</script> -->
