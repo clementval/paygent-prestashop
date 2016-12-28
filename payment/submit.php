@@ -43,9 +43,8 @@ $paygent->validateOrder($cart->id, $status, $id);
   </head>
   <body>
     <p>Please wait, redirecting to Paygent Credit Card service... Thanks.<br/>
-    <a href="javascript:history.go(-1);">Cancel</a>
-  </p>
-  <body>
+      <a href="javascript:history.go(-1);">Cancel</a>
+    </p>
     <form method="POST" action="<?= $paygent_action ?>" class="hiddent" id="paygent_form">
       <input type="hidden" name="language_code" value="en" />
       <input type="hidden" name="currency_code" value="EUR" />
