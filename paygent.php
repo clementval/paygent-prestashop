@@ -80,7 +80,7 @@ class Paygent extends PaymentModule
   private function initializeDB()
   {
     return Db::getInstance()->Execute('CREATE TABLE `'._DB_PREFIX_.'paygent_details` (
-      `id_paygent_details` INT NOT NULL AUTO_INCREMENT ,
+      `id_details` INT NOT NULL AUTO_INCREMENT ,
       `timestamp` DATETIME NULL ,
       `hc` VARCHAR( 255 ) NOT NULL ,
       `acq_id` INT NOT NULL ,
@@ -92,7 +92,7 @@ class Paygent extends PaymentModule
       `payment_id` DOUBLE NOT NULL ,
       `payment_amount` INT NOT NULL ,
       `payment_type` INT NOT NULL ,
-      PRIMARY KEY (`id_paygent_details`))
+      PRIMARY KEY (`id_details`))
       ENGINE = '._MYSQL_ENGINE_.' DEFAULT CHARSET=utf8');
   }
 
