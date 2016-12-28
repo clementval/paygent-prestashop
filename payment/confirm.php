@@ -5,7 +5,7 @@ include_once(_PS_MODULE_DIR_.'paygent/classes/paygent_helper.php');
 
 $security_token = Configuration::get('PAYGENT_SECURITY_TOKEN');
 
-if(isset($_GET['token']) && $_GET['token'] == $security_token) {
+//if(isset($_GET['token']) && $_GET['token'] == $security_token) {
   $paygent_helper = new PaygentHelper();
   $trading_id = trim($_POST["trading_id"]);
   $hc = trim($_POST["hc"]);
@@ -38,7 +38,7 @@ if(isset($_GET['token']) && $_GET['token'] == $security_token) {
       http_response_code(200);
       echo 'result=0';
   }
-} else {
+/*} else {
   echo 'Unauthorized access.';
-}
+}*/
 ?>
