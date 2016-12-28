@@ -28,14 +28,18 @@ if($currency_code == "JPY"){
   $id = round($id);
 }
 
+// Validate the order and get the order id
+$status = Configuration::get('PAYGENT_ORDER_STATUS_WAIT');
+$paygent = new Paygent();
+$paygent->validateOrder($cart->id, $status, $id);
+$order_id = $paygent->currentOrder;
 
 $return_url = $smarty->tpl_vars['base_dir'].'history.php';
 $paygent_helper = new PaygentHelper();
-$paygent = new Paygent();
 $paygent_helper->load_configuration();
 $paygent_action = Configuration::get('PAYGENT_ACTION_URL');
 $merchant_id = $paygent_helper->get_merchant_id();
-$trading_id = $cart->id;
+$trading_id = $order_id;
 $customer_id = $cart->id_customer;
 $payment_class = "0";
 $payment_type = "02";
@@ -50,10 +54,8 @@ $paygent_helper->set_use_card_conf_number($use_card_conf_number);
 $paygent_helper->set_payment_term_min($pay_term_min);
 $hash = $paygent_helper->generate_hash();
 
+// Insert the transaction to paygent
 $paygent_helper->insert_transaction();
-
-$status = Configuration::get('PAYGENT_ORDER_STATUS_WAIT');
-$paygent->validateOrder($cart->id, $status, $id);
 
 ?>
 <html>
