@@ -26,7 +26,7 @@ if($trading_id != ""){
     $objOrder = new Order((int)$trading_id);
     if(((int)$payment_status) == 20) { // Authorization OK
       $objOrder->setCurrentState(2);
-      echo 0;
+      echo 0; // Returning the ack to Paygent. TODO not good format yet
     } else {
       $objOrder->setCurrentState(8);
     }
