@@ -15,6 +15,7 @@ $merchant_id = $paygent_helper->get_merchant_id();
 $trading_id = trim($_POST["test_trading_id"]);
 $id = trim($_POST["test_amount"]);
 $customer_id = trim($_POST["test_customer_id"]);
+$currency_code = trim($_POST["test_currency_code"]);
 $payment_class = "0";
 $payment_type = "02";
 $use_card_conf_number = "1";
@@ -46,7 +47,7 @@ $paygent_helper->insert_transaction();
   <body>
     <form method="POST" action="<?= $paygent_action ?>" class="hiddent" id="paygent_form">
       <input type="hidden" name="language_code" value="en" />
-      <input type="hidden" name="currency_code" value="EUR" />
+      <input type="hidden" name="currency_code" value="<?= $currency_code ?>" />
       <input type="hidden" name="trading_id" value="<?= $trading_id ?>" /> <!-- transaction id -->
       <input type="hidden" name="payment_type" value="<?= $payment_type ?>" />
       <input type="hidden" name="id" value="<?= $id ?>" /> <!-- amount -->

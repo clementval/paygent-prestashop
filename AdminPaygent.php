@@ -45,6 +45,7 @@ class AdminPaygent extends AdminTab {
       echo 'Customer ID: <input type="text" name="test_customer_id"/><br>';
       echo 'Amount: <input type="text" name="test_amount"/><br>';
       echo 'Trading ID: <input type="text" name="test_trading_id"/><br>';
+      echo 'Currency: <input type="text" name="test_currency_code" value="JPY"/> (JPY, EUR, USD)<br>';
       echo '<input type="submit" value="Test"/>';
       echo '</form>';
       echo '<br>';
