@@ -144,7 +144,8 @@ class Paygent extends PaymentModule
     }
     $admin_tab->save();
     $tab_id = $admin_tab->id;
-    @copy(dirname(__FILE__).'/logo.gif',_PS_ROOT_DIR_.'/img/t/logo.gif');
+    @copy(dirname(__FILE__).'/paygent-logo.gif',_PS_ROOT_DIR_.'/img/t/paygent-logo.gif');
+    @copy(dirname(__FILE__).'/mc_visa.gif',_PS_ROOT_DIR_.'/img/mc_visa.gif');
     Configuration::updateValue('PAYGENT_TAB_ID', $tab_id);
     return true;
   }
